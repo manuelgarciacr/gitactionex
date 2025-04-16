@@ -1,0 +1,46 @@
+name: Commit Logger
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch: # Permet activació manual
+  schedule:
+    - cron: "59 23 * * 5" # Cada divendres a les 23:59 (UTC)
+
+jobs:
+  log-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 5 # Descarga más commits si es necesario
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: "1.20"
+
+      - name: Run commit logger script
+        run: |
+          mkdir -p log/  # Asegura que el directorio existe
+          cd scripts
+          go run log_commits.go || exit 1  # Falla el job si el script falla
+
+      - name: Commit and push if changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+      
+          # Debug: Listar archivos en log/
+          echo "--- Archivos en log/ ---"
+          ls -la log/
+      
+          # Solo commitea si hay cambios
+          if [ -n "$(find log/ -type f -name 'commits_*.txt')" ]; then
+            git add log/
+            git commit -m "Auto: Add latest commits log"
+            git push
+          else
+            echo "No hay archivos nuevos en log/ para commitear."
+          fi
