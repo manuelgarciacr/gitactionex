@@ -5,7 +5,7 @@ on:
     branches: ["main"]
   workflow_dispatch: # Permet activació manual
   schedule:
-    - cron: "* * * * *" # Cada divendres a les 23:59 (UTC)
+    - cron: "*/5 * * * *" # Cada divendres a les 23:59 (UTC)
 
 jobs:
   log-commits:
