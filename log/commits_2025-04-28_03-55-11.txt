@@ -1,5 +1,0 @@
-Últimos 3 commits del repositorio:
-
-cd55e35 - GitHub Actions, 27 minutes ago : Auto: Add latest commits log
-32b633d - GitHub Actions, 2 hours ago : Auto: Add latest commits log
-76adf2e - GitHub Actions, 3 hours ago : Auto: Add latest commits log

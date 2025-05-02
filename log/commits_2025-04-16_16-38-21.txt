@@ -1,5 +1,0 @@
-Últimos 3 commits del repositorio:
-
-6a1157f - Manuel García Criado, 26 seconds ago : Changing cron
-dcfb7e0 - GitHub Actions, 5 minutes ago : Auto: Add latest commits log
-24ecb83 - Manuel García Criado, 5 minutes ago : Merge branch 'main' of https://github.com/manuelgarciacr/gitactionex
